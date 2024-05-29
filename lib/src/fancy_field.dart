@@ -197,48 +197,40 @@ class _FancyFieldState extends State<FancyField> {
       }
     } else {
       //basic validations
-      switch (widget.keyboardType) {
-        case TextInputType.text:
-        case TextInputType.visiblePassword:
-          if (value.isEmpty) {
-            overlayShow();
-            changeStatusError(true);
-          } else {
-            overlayClose();
-            changeStatusError(false);
-          }
-
-          break;
-        case TextInputType.emailAddress:
-          if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
-              .hasMatch(value)) {
-            overlayShow();
-            changeStatusError(true);
-          } else {
-            overlayClose();
-            changeStatusError(false);
-          }
-          break;
-        case TextInputType.phone:
-          if (!RegExp(r'^\d{10}$').hasMatch(value)) {
-            overlayShow();
-            changeStatusError(true);
-          } else {
-            overlayClose();
-            changeStatusError(false);
-          }
-          break;
-        case TextInputType.number:
-          if (!RegExp(r'^[0-9]+(?:\.[0-9]+)?$').hasMatch(value)) {
-            overlayShow();
-            changeStatusError(true);
-          } else {
-            overlayClose();
-            changeStatusError(false);
-          }
-          break;
-        default:
-          break;
+      if (widget.keyboardType == TextInputType.text ||
+        widget.keyboardType == TextInputType.visiblePassword) {
+        if (value.isEmpty) {
+        overlayShow();
+        changeStatusError(true);
+        } else {
+        overlayClose();
+        changeStatusError(false);
+        }
+      } else if (widget.keyboardType == TextInputType.emailAddress) {
+        if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+          .hasMatch(value)) {
+        overlayShow();
+        changeStatusError(true);
+        } else {
+        overlayClose();
+        changeStatusError(false);
+        }
+      } else if (widget.keyboardType == TextInputType.phone) {
+        if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+        overlayShow();
+        changeStatusError(true);
+        } else {
+        overlayClose();
+        changeStatusError(false);
+        }
+      } else if (widget.keyboardType == TextInputType.number) {
+        if (!RegExp(r'^[0-9]+(?:\.[0-9]+)?$').hasMatch(value)) {
+        overlayShow();
+        changeStatusError(true);
+        } else {
+        overlayClose();
+        changeStatusError(false);
+        }
       }
     }
   }
@@ -256,57 +248,53 @@ class _FancyFieldState extends State<FancyField> {
       return widget.cutomValidation!.hasMatch(value) ? null : "Error";
     } else {
       //basic validations
-      switch (widget.keyboardType) {
-        case TextInputType.text:
-        case TextInputType.visiblePassword:
-          if (value.isEmpty) {
-            overlayShow();
-            changeStatusError(true);
-          } else {
-            overlayClose();
-            changeStatusError(false);
-          }
-          return value.isNotEmpty ? null : widget.errorMessage ?? 'Error';
-
-        case TextInputType.emailAddress:
-          if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
-              .hasMatch(value)) {
-            overlayShow();
-            changeStatusError(true);
-          } else {
-            overlayClose();
-            changeStatusError(false);
-          }
-          return RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
-                  .hasMatch(value)
-              ? null
-              : widget.errorMessage ?? 'Error';
-
-        case TextInputType.phone:
-          if (!RegExp(r'^\d{10}$').hasMatch(value)) {
-            overlayShow();
-            changeStatusError(true);
-          } else {
-            overlayClose();
-            changeStatusError(false);
-          }
-          return RegExp(r'^\d{10}$').hasMatch(value)
-              ? null
-              : widget.errorMessage ?? 'Error';
-        case TextInputType.number:
-          if (!RegExp(r'^[0-9]+(?:\.[0-9]+)?$').hasMatch(value)) {
-            overlayShow();
-            changeStatusError(true);
-          } else {
-            overlayClose();
-            changeStatusError(false);
-          }
-
-          return RegExp(r'^[0-9]+(?:\.[0-9]+)?$').hasMatch(value)
-              ? null
-              : widget.errorMessage ?? 'Error';
-        default:
-          return null;
+      if (widget.keyboardType == TextInputType.text ||
+        widget.keyboardType == TextInputType.visiblePassword) {
+        if (value.isEmpty) {
+        overlayShow();
+        changeStatusError(true);
+        } else {
+        overlayClose();
+        changeStatusError(false);
+        }
+        return value.isNotEmpty ? null : widget.errorMessage ?? 'Error';
+      } else if (widget.keyboardType == TextInputType.emailAddress) {
+        if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+          .hasMatch(value)) {
+        overlayShow();
+        changeStatusError(true);
+        } else {
+        overlayClose();
+        changeStatusError(false);
+        }
+        return RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+            .hasMatch(value)
+          ? null
+          : widget.errorMessage ?? 'Error';
+      } else if (widget.keyboardType == TextInputType.phone) {
+        if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+        overlayShow();
+        changeStatusError(true);
+        } else {
+        overlayClose();
+        changeStatusError(false);
+        }
+        return RegExp(r'^\d{10}$').hasMatch(value)
+          ? null
+          : widget.errorMessage ?? 'Error';
+      } else if (widget.keyboardType == TextInputType.number) {
+        if (!RegExp(r'^[0-9]+(?:\.[0-9]+)?$').hasMatch(value)) {
+        overlayShow();
+        changeStatusError(true);
+        } else {
+        overlayClose();
+        changeStatusError(false);
+        }
+        return RegExp(r'^[0-9]+(?:\.[0-9]+)?$').hasMatch(value)
+          ? null
+          : widget.errorMessage ?? 'Error';
+      } else {
+        return null;
       }
     }
   }
@@ -370,25 +358,24 @@ class _FancyFieldState extends State<FancyField> {
       if (widget.prefixIcon != null) {
         return Icon(widget.prefixIcon, color: widget.colorPrimary);
       } else {
-        switch (widget.keyboardType) {
-          case TextInputType.emailAddress:
-            return Icon(Icons.email_rounded, color: widget.colorPrimary);
-          case TextInputType.phone:
-            return Icon(Icons.phone_rounded, color: widget.colorPrimary);
-          case TextInputType.number:
-            return Icon(Icons.numbers_rounded, color: widget.colorPrimary);
-          case TextInputType.visiblePassword:
-            setState(() {
-              isPassword = true;
-            });
-            return Icon(
-              Icons.lock_rounded,
-              color: widget.colorPrimary,
-              size: fixIconSize(30),
-            );
-          default:
-            return Icon(Icons.text_fields_rounded,
-                color: widget.colorPrimary, size: fixIconSize(30));
+        if (widget.keyboardType == TextInputType.emailAddress) {
+          return Icon(Icons.email_rounded, color: widget.colorPrimary);
+        } else if (widget.keyboardType == TextInputType.phone) {
+          return Icon(Icons.phone_rounded, color: widget.colorPrimary);
+        } else if (widget.keyboardType == TextInputType.number) {
+          return Icon(Icons.numbers_rounded, color: widget.colorPrimary);
+        } else if (widget.keyboardType == TextInputType.visiblePassword) {
+          setState(() {
+            isPassword = true;
+          });
+          return Icon(
+            Icons.lock_rounded,
+            color: widget.colorPrimary,
+            size: fixIconSize(30),
+          );
+        } else {
+          return Icon(Icons.text_fields_rounded,
+              color: widget.colorPrimary, size: fixIconSize(30));
         }
       }
     }
@@ -433,8 +420,7 @@ class _FancyFieldState extends State<FancyField> {
         list.add(Icon(widget.suffixIcon, color: widget.colorPrimary));
         return _getBaseSufix(list);
       } else {
-        switch (widget.keyboardType) {
-          case TextInputType.visiblePassword:
+        if(widget.keyboardType ==TextInputType.visiblePassword){
             list.add(SizedBox(
               height: fixIconSize(30),
               child: IconButton(
